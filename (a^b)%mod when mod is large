@@ -11,8 +11,7 @@ ll binmultiply(ll a,ll b,ll mod)
      }
      return ans;
 }
-
-ll binwithmod(ll a,ll b,ll mod)
+ll binwithmod2(ll a,ll b,ll mod)
 {
      a%=mod;
      ll ans=1;
