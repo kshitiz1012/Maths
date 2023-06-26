@@ -29,7 +29,7 @@ ll binwithmod2(ll a,ll b,ll mod)
 }
 
 //CHEAP TIME COMPLEXITY
-ll binwithmod1(ll a,ll b)
+ll binwithmod1(ll a,ll b,ll mod)
 {
      a%=mod;
      ll ans=1;
