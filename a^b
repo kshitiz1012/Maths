@@ -4,8 +4,8 @@ ll binwithoutmod(ll a,ll b)
      while(b)
      {
           if(b&1)
-          ans=(ans*a)%mod;
-          a=(a*a)%mod;
+          ans=(ans*a);
+          a=(a*a);
           b>>=1;
      }
      return ans;
