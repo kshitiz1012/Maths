@@ -1,6 +1,6 @@
-ll binwithoutmod(ll a,ll b)
+ll binwithmod1(ll a,ll b,ll mod)
 {
-    a%=mod;
+     a%=mod;
      ll ans=1;
      while(b)
      {
