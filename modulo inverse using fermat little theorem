@@ -12,7 +12,7 @@ ll binmultiply(ll a,ll b,ll mod)
      return ans;
 }
 
-//HAD TO BE USED ONLY WHEN MOD IS GREATER THAN 1e9+7;(HEAVY TIME COMPLEXITY)
+//HAD TO BE USED ONLY WHEN MOD IS GREATER THAN 1e9;(HEAVY TIME COMPLEXITY)
 ll binwithmod2(ll a,ll b,ll mod)
 {
      a%=mod;
@@ -43,7 +43,7 @@ ll binwithmod1(ll a,ll b,ll mod)
      return ans;
 }
 
-ll inverse(ll n)
+ll inverse(ll n,ll mod)
 {
      ll ans=binwithmod1(n,mod-2,mod);
      return ans;
