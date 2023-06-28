@@ -1,0 +1,23 @@
+pair<ll,ll> extended_gcd(ll a,ll b)
+{
+    if(b==0)
+    return {1,1};
+    
+    pair<ll,ll> sp=extended_gcd(b,a%b);
+    ll x=sp.second;
+    ll y=(sp.first-a/b*sp.second);
+    
+    return {x,y};
+}
+void solve()
+{
+    ll a,b;
+    cin>>a>>b;
+    ll f=__gcd(a,b);
+    if(f!=1)
+    return;
+    
+    pair<ll,ll> ans=extended_gcd(a,b);
+    ll e=ans.first;
+    e=(e%b+b)%b;    // To make e positive
+}
