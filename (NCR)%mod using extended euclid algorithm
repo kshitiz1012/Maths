@@ -1,0 +1,45 @@
+const int N=1e5+3;
+ll fact[N];
+ll mod=1e9+3;
+void factorial()
+{
+    fact[0]=fact[1]=1;
+    for(int i=2;i<N;i++)
+    fact[i]=(fact[i-1]*i)%mod;
+}
+pair<ll,ll> extended_gcd(ll a,ll b)
+{
+    if(b==0)
+    return {1,1};
+    
+    pair<ll,ll> ans=extended_gcd(b,a%b);
+    ll x=ans.second;
+    ll y=ans.first-a/b*ans.second;
+    
+    return {x,y};
+}
+ll inverse(ll n)
+{
+    ll k=__gcd(mod,n);
+    if(k!=1)
+    return -1;
+    else
+    {
+        pair<ll,ll> ans=extended_gcd(n,mod);
+        ll e=ans.first;
+        e=(e%mod+mod)%mod;
+        return e;
+    }
+}
+ll NcR(ll n,ll r)
+{
+    if(n<r)
+    return 0;
+    
+    if(r==0)
+    return 1;
+    
+    return (fact[n] * inverse(fact[r]) % mod
+            * inverse(fact[n - r]) % mod)
+           % mod;
+}
