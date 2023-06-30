@@ -1,0 +1,89 @@
+pair<ll,ll> extended_gcd(ll a,ll b)
+{
+    if(b==0)
+    return {1,1};
+    
+    pair<ll,ll> sp=extended_gcd(b,a%b);
+    ll x=sp.second,y=sp.first-(a/b)*sp.second;
+    // for the equation (ax-by),x=-(sp.second),y=-(sp.first+(a/b)*sp.second);
+    
+    return {x,y};
+}
+void shift(ll &x,ll &y,ll a,ll b,ll cnt)
+{
+    x+=(cnt*b);
+    y-=(cnt*a);
+}
+void solve()
+{
+    ll a,b,c,minx,maxx,miny,maxy;
+    cin>>a>>b>>c>>minx>>maxx>>miny>>maxy;
+    
+    ll g=__gcd(a,b);
+    pair<ll,ll> ans=extended_gcd(a,b);
+    ll x=ans.first,y=ans.second;
+    x*=(c/g);
+    y*=(c/g);
+    
+    a/=g;
+    b/=g;
+    c/=g;
+    
+    if(a<0)
+    x*=(-1);
+    
+    if(b<0)
+    y*=(-1);
+    
+    ll s1=(a<0)? -1:1;
+    ll s2=(b<0)? -1:1;
+    
+    shift(x,y,a,b,(minx-x)/b);
+    if(x<minx)
+    shift(x,y,a,b,s2);
+    if(x>maxx)
+    return;
+    
+    ll lx1=x;
+    
+    shift(x,y,a,b,(maxx-x)/b);
+    if(x>maxx)
+    shift(x,y,a,b,-s2);
+    ll rx1=x;
+    
+    shift(x,y,a,b,-(miny-y)/a);
+    if(y<miny)
+    shift(x,y,a,b,-s1);
+    if(y>maxy)
+    return;
+    ll lx2=x;
+    
+    shift(x,y,a,b,-(maxy-y)/a);
+    if(y>maxy)
+    shift(x,y,a,b,s1);
+    ll rx2=x;
+    
+    if(lx2>rx2)
+    swap(lx2,rx2);
+    ll lx=max(lx1,lx2);
+    ll rx=min(rx1,rx2);
+    
+    if(lx>rx)
+    return;
+    
+    ll ans1=(rx-lx)/abs(b)+1;
+    cout<<"Total number of solutions in the given range ";
+    cout<<ans1<<endl;
+    
+    cout<<"Solutions are"<<endl;
+    while(lx<=rx)
+    {
+        cout<<lx<<" "<<(c-(a*lx))/b<<endl;
+        lx+=b;
+    }
+    
+    // Minimum value of (x+y)
+    // if(a==b) all valid solutions will have equal sum;
+    // if(a<b) the first solution using the above logic i.e. (lx,(c-a*lx)/b);
+    // if(a>b) the last solution using the above logic i.e. (rx,(c-a*rx)/b);
+}
