@@ -1,0 +1,24 @@
+pair<ll,ll> extended_gcd(ll a,ll b)
+{
+    if(b==0)
+    return {1,1};
+    
+    pair<ll,ll> sp=extended_gcd(b,a%b);
+    ll x=sp.second,y=sp.first-(a/b)*sp.second;
+    // for the equation (ax-by),x=-(sp.second),y=-(sp.first+(a/b)*sp.second);
+    
+    return {x,y};
+}
+void solve()
+{
+    ll a,b;
+    cin>>a>>b;
+    
+    pair<ll,ll> ans=extended_gcd(a,b);
+    ll x=ans.first,y=ans.second;
+    if(a<0)
+    x*=(-1);
+    
+    if(b<0)
+    y*=(-1);
+}
