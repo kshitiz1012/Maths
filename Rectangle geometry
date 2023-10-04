@@ -1,0 +1,56 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+#define ll long long
+#define endl "\n"
+#define yes cout<<"YES"<<endl
+#define no  cout<<"NO"<<endl
+// Representing the rectangle 
+struct rect
+{
+     ll blx,bly,trx,tryy;
+     ll area(){ return (trx-blx)*(tryy-bly);}
+};
+// Finding the area of intersection
+ll intersect(rect a,rect b)
+{
+     ll width=max(0LL,min(a.trx,b.trx)-max(a.blx,b.blx));
+     ll length=max(0LL,min(a.tryy,b.tryy)-max(a.bly,b.bly));
+     
+     return (width*length);
+}
+// Finding points of intersection
+vector<ll> intersect1(rect a,rect b)
+{
+     ll trx=min(a.trx,b.trx);
+     ll blx=max(a.blx,b.blx);
+     ll tryy=min(a.tryy,b.tryy);
+     ll bly=max(a.bly,b.bly);
+     
+     vector<ll> ans;
+     ans.push_back(blx);
+     ans.push_back(bly);
+     ans.push_back(trx);
+     ans.push_back(tryy);
+     return ans;
+}
+void solve()
+{
+      Rect a,b;
+      cin>>a.blx>>a.bly>>a.trx>>a.tryy;
+      cin>>b.blx>>b.bly>>b.trx>>b.tryy;
+}
+int main()
+{
+	ios::sync_with_stdio(false);
+	cin.tie(0);
+	
+	ll t;
+	cin>>t;
+	while(t--)
+	{
+	   solve();
+	}  
+	
+}
